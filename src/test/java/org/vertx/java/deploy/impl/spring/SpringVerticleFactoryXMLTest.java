@@ -9,10 +9,8 @@ import org.vertx.java.test.junit.support.VertxTestBase;
 
 
 @RunWith(VertxConfigurableJUnit4Runner.class)
-@TestVerticle(main="spring:org.vertx.java.deploy.impl.spring.beans.TestConfiguration", urls={
-  "src/test/java", "src/test/resources"
-})
-public class SpringVerticleFactoryTest extends VertxTestBase {
+@TestVerticle(main="spring:testConfig.xml")
+public class SpringVerticleFactoryXMLTest extends VertxTestBase {
 
   @Before
   public void setup() {
@@ -21,7 +19,7 @@ public class SpringVerticleFactoryTest extends VertxTestBase {
 
   @Test
   public void testVertxAutowiredBean() throws Exception {
-    testMessageEcho("vertx.test.echo0", "What's the time Mr Wolf?");
+    testMessageEcho("vertx.test.echo0", "What's the time Mr Wolfe?");
   }
 
   @Test

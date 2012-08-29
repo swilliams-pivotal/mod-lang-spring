@@ -9,8 +9,6 @@
 
   <context:annotation-config/>
 
-  <context:component-scan base-package="org.vertx.java.deploy.impl.spring.beans"/>
-
   <bean class="org.vertx.java.deploy.impl.spring.beans.VertxAwareBean"></bean>
 
   <bean class="org.vertx.java.deploy.impl.spring.beans.VertxAutowiredBean"></bean>
