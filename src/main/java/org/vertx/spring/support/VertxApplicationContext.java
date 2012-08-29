@@ -50,7 +50,7 @@ public class VertxApplicationContext {
 
     ConfigurableListableBeanFactory factory = parent.getBeanFactory();
     factory.registerSingleton("vertx", vertx);
-    factory.registerSingleton("vertx-container", container);
+    factory.registerSingleton("verticle-container", container);
 
     parent.refresh();
     parent.start();
