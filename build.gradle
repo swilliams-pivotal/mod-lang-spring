@@ -29,29 +29,42 @@ repositories {
   mavenLocal()
 }
 
+configurations {
+  provided
+}
+
+sourceSets {
+  main {
+    compileClasspath = compileClasspath + configurations.provided
+  }
+}
+
 dependencies {
-  compile "org.vert-x:vertx-core:$vertxVersion"
-  compile "org.vert-x:vertx-platform:$vertxVersion"
+  provided "org.vert-x:vertx-core:$vertxVersion"
+  provided "org.vert-x:vertx-platform:$vertxVersion"
 
-  compile "cglib:cglib-nodep:2.2"
-  compile "org.springframework:spring-beans:$springVersion"
-  compile "org.springframework:spring-core:$springVersion"
-  compile "org.springframework:spring-context:$springVersion"
-  compile "org.springframework:spring-context-support:$springVersion"
-  compile "org.springframework:spring-expression:$springVersion"
+  compile("org.springframework:spring-beans:$springVersion") { transitive = false }
+  compile("org.springframework:spring-core:$springVersion") { transitive = false }
+  compile("org.springframework:spring-context:$springVersion") { transitive = false }
 
-  testCompile "org.vert-x:vertx-lang-java:$vertxVersion"
-  testCompile "org.vert-x:vertx-lang-rhino:$vertxVersion"
+  testCompile "cglib:cglib-nodep:2.2"
+  testCompile "junit:junit:$junitVersion"
   testCompile "org.mozilla:rhino:$rhinoVersion"
 
+  testCompile "org.springframework:spring-aop:$springVersion"
+  testCompile "org.springframework:spring-asm:$springVersion"
+  testCompile "org.springframework:spring-expression:$springVersion"
+  testCompile "org.springframework:spring-test:$springVersion"
+
+  testCompile "org.vert-x:vertx-junit-annotations:1.0"
+  testCompile "org.vert-x:vertx-lang-java:$vertxVersion"
+  testCompile "org.vert-x:vertx-lang-rhino:$vertxVersion"
   testCompile("org.vert-x:vertx-testframework:$vertxVersion") {
     transitive = false // don't need all of the other language deps
   }
-
-  testCompile "junit:junit:$junitVersion"
-  testCompile "org.vert-x:vertx-junit-annotations:1.0"
-  testCompile "org.springframework:spring-test:$springVersion"
 }
+
+javadoc.classpath += configurations.provided
 
 test {
   // Some vert.x properties
@@ -61,5 +74,33 @@ test {
 
   // Show output
   testLogging.showStandardStreams = true
+}
+
+task collectDeps(type: Copy) {
+  group = 'vert.x'
+  description = 'conveniently collect dependencies for other IDEs'
+  destinationDir = file("build/deps")
+  into("compile") {
+    from configurations.compile
+  }
+  into("test") {
+    from configurations.testCompile
+  }
+}
+
+task prepareDist(type:Sync, dependsOn: ['build']) {
+  group = 'vert.x'
+  description = 'Prepare distribution'
+  destinationDir file("build/${project.name}-v${project.version}")
+  from jar
+  from configurations.compile
+}
+
+task dist(type:Zip, dependsOn: ['prepareDist']) {
+  group = 'vert.x'
+  description = 'Package distribution'
+  destinationDir file("build/distributions")
+  from "build/${project.name}-v${project.version}"
+  into 'build/distributions'
 }
 
