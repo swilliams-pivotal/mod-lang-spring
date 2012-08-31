@@ -1,7 +1,6 @@
 package org.vertx.java.deploy.impl.spring;
 
 import org.vertx.java.deploy.Verticle;
-import org.vertx.java.spring.support.VertxApplicationContext;
 
 /**
  * @author swilliams

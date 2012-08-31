@@ -1,4 +1,4 @@
-package org.vertx.java.spring.support;
+package org.vertx.java.deploy.impl.spring;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -45,7 +45,8 @@ import org.vertx.java.deploy.Container;
  * I also like the analogy of the vertx instance being in a parent
  * context, as it's not instantiated in the context you really use.
  *
- * @author pidster
+ * @author swilliams
+ * @since 1.0
  *
  */
 public class VertxApplicationContext implements ApplicationContext {
@@ -88,7 +89,12 @@ public class VertxApplicationContext implements ApplicationContext {
    * @param listener
    */
   public void addApplicationListener(final ApplicationListener<?> listener) {
-    listeners.add(listener);
+    if (context == null) {
+      listeners.add(listener);
+    }
+    else {
+      context.addApplicationListener(listener);
+    }
   }
 
   /**
@@ -115,8 +121,11 @@ public class VertxApplicationContext implements ApplicationContext {
       }
     }
 
-    for (ApplicationListener<?> listener : listeners) {
-      context.addApplicationListener(listener);
+    if (!listeners.isEmpty()) {
+      for (ApplicationListener<?> listener : listeners) {
+        context.addApplicationListener(listener);
+      }
+      listeners.clear();
     }
 
     ConfigurableListableBeanFactory factory = context.getBeanFactory();

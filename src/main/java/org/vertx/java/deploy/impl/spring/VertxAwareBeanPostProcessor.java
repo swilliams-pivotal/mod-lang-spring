@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vertx.java.spring.support;
+package org.vertx.java.deploy.impl.spring;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
 import org.vertx.java.core.Vertx;
 
 /**
  * @author swilliams
  * @since 1.0
  */
-public class VertxAwareBeanPostProcessor implements BeanPostProcessor {
+public class VertxAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter {
 
   private Vertx vertx;
 
@@ -44,15 +44,6 @@ public class VertxAwareBeanPostProcessor implements BeanPostProcessor {
       return vertxSupport;
     }
 
-    return bean;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Object postProcessAfterInitialization(Object bean, String beanName)
-      throws BeansException {
     return bean;
   }
 

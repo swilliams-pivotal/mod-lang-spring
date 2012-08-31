@@ -5,7 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.Vertx;
 import org.vertx.java.core.eventbus.Message;
-import org.vertx.java.spring.support.VertxAware;
+import org.vertx.java.deploy.impl.spring.VertxAware;
 
 public class VertxAwareBean implements InitializingBean, DisposableBean, VertxAware {
 

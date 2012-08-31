@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vertx.java.spring.support;
+package org.vertx.java.deploy.impl.spring;
 
 import org.vertx.java.core.Vertx;
 
