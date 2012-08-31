@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-apply from: 'gradle/setup.gradle'
 apply plugin: 'java'
+apply from: 'gradle/maven.gradle'
+apply from: 'gradle/setup.gradle'
 
 defaultTasks = ['assemble']
 

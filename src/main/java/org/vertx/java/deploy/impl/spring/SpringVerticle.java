@@ -1,7 +1,7 @@
 package org.vertx.java.deploy.impl.spring;
 
 import org.vertx.java.deploy.Verticle;
-import org.vertx.spring.support.VertxApplicationContext;
+import org.vertx.java.spring.support.VertxApplicationContext;
 
 /**
  * @author swilliams
@@ -31,7 +31,7 @@ public class SpringVerticle extends Verticle {
   public void stop() throws Exception {
 
     if (context != null) {
-      context.close();
+      context.stop();
     }
 
     super.stop();
