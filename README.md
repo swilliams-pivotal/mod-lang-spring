@@ -1,7 +1,18 @@
-# ProjectName
+# vertx-lang-spring
 
-A project summary goes here
+Spring language support extension for vert.x.
 
-## A_set_of_build_instructions
+## HowTo use vertx-lang-spring
 
-Put your build instructions here.
+1. Using the prefix 'spring:', specify a Spring configuration file in your verticle or module's mod.json:
+
+    {
+      "main": "spring:mySpringConfig.xml"
+    }
+
+2. Alternatively, if you provide cglib in your application, you can specify an annotated @Configuration class in your verticle or module's mod.json:
+    {
+      "main": "spring:my.example.ConfigClass"
+    }
+
+
