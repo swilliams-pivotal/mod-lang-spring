@@ -3,12 +3,12 @@ package org.vertx.java.deploy.impl.spring;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.vertx.java.test.junit.VertxConfigurableJUnit4Runner;
+import org.vertx.java.test.junit.VertxConfigurationJUnit4Runner;
 import org.vertx.java.test.junit.annotations.TestVerticle;
 import org.vertx.java.test.junit.support.VertxTestBase;
 
 
-@RunWith(VertxConfigurableJUnit4Runner.class)
+@RunWith(VertxConfigurationJUnit4Runner.class)
 @TestVerticle(main="spring:testConfig.xml")
 public class SpringVerticleFactoryXMLTest extends VertxTestBase {
 
