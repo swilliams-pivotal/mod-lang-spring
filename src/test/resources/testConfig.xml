@@ -7,10 +7,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-  <context:annotation-config/>
+  <bean 
+    class="org.vertx.java.deploy.impl.spring.beans.VertxAutowiredBean" 
+    c:vertx-ref="vertx"></bean>
 
-  <bean class="org.vertx.java.deploy.impl.spring.beans.VertxAutowiredBean"></bean>
-
-  <bean class="org.vertx.java.deploy.impl.spring.beans.VertxAwareBean"></bean>
+  <bean 
+    class="org.vertx.java.deploy.impl.spring.beans.VertxAwareBean"></bean>
 
 </beans>

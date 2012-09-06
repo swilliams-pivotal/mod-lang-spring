@@ -14,7 +14,7 @@ public class VertxAutowiredBean implements InitializingBean, DisposableBean {
   private String handlerId;
 
   @Autowired
-  public void setVertx(Vertx vertx) {
+  public VertxAutowiredBean(Vertx vertx) {
     this.vertx = vertx;
   }
 

@@ -14,7 +14,7 @@ public class TestConfiguration {
 
   @Bean
   public VertxAutowiredBean vertxAutowiredBean() {
-    return new VertxAutowiredBean();
+    return new VertxAutowiredBean(vertxAwareBean().getVertx());
   }
 
 }

@@ -10,7 +10,7 @@ import org.vertx.java.test.VertxTestBase;
 
 @RunWith(VertxJUnit4ClassRunner.class)
 @TestVerticle(main="spring:testConfig.xml")
-public class SpringVerticleFactoryXMLTest extends VertxTestBase {
+public class SpringVertxXMLTest extends VertxTestBase {
 
   @Before
   public void setup() {

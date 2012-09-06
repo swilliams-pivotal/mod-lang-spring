@@ -11,9 +11,11 @@ public class SpringVerticleFactory implements VerticleFactory {
 
   private static final String PREFIX = "spring:";
 
+  private VerticleManager manager;
+
   @Override
   public void init(VerticleManager manager) {
-    // NO-OP
+    this.manager = manager;
   }
 
   @Override
@@ -41,8 +43,7 @@ public class SpringVerticleFactory implements VerticleFactory {
 
   @Override
   public void reportException(Throwable t) {
-    // TODO Auto-generated method stub
-    t.printStackTrace();
+    manager.getLogger().error("Exception in Spring verticle", t);
   }
 
 }

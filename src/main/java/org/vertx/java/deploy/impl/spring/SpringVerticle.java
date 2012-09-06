@@ -21,7 +21,7 @@ public class SpringVerticle extends Verticle {
 
   @Override
   public void start() throws Exception {
-
+    Thread.currentThread().setContextClassLoader(loader);
     this.context = new VertxApplicationContext(loader, vertx, container);
     context.createContext(springConfig);
   }
