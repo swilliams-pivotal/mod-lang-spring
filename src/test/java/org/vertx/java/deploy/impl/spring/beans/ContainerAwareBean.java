@@ -15,45 +15,31 @@
  */
 package org.vertx.java.deploy.impl.spring.beans;
 
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.vertx.java.core.Handler;
-import org.vertx.java.core.Vertx;
-import org.vertx.java.core.eventbus.Message;
+import org.springframework.util.Assert;
+import org.vertx.java.deploy.Container;
+import org.vertx.java.deploy.impl.spring.ContainerAware;
 
 /**
  * @author swilliams
  *
  */
-public class VertxAutowiredBean implements InitializingBean, DisposableBean {
+public class ContainerAwareBean implements InitializingBean, ContainerAware {
 
-  private final Vertx vertx;
+  private Container container;
 
-  private String handlerId;
-
-  @Autowired
-  public VertxAutowiredBean(Vertx vertx) {
-    this.vertx = vertx;
+  @Override
+  public void setContainer(Container container) {
+    this.container = container;
   }
 
-  public Vertx getVertx() {
-    return vertx;
+  public Container getContainer() {
+    return container;
   }
 
   @Override
   public void afterPropertiesSet() throws Exception {
-    this.handlerId = vertx.eventBus().registerHandler("vertx.test.echo1", new Handler<Message<String>>() {
-      @Override
-      public void handle(Message<String> event) {
-        event.reply(event.body);
-      }
-    });
-  }
-
-  @Override
-  public void destroy() throws Exception {
-    vertx.eventBus().unregisterHandler(handlerId);
+    Assert.notNull(container, "Container must not be null!");
   }
 
 }

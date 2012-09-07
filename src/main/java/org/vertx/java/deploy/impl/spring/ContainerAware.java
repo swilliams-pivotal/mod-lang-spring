@@ -15,16 +15,14 @@
  */
 package org.vertx.java.deploy.impl.spring;
 
-import org.vertx.java.core.Vertx;
-
+import org.vertx.java.deploy.Container;
 
 /**
  * @author swilliams
- * @since 1.0
  *
  */
-public interface VertxAware {
+public interface ContainerAware {
 
-  void setVertx(Vertx vertx);
+  void setContainer(Container container);
 
 }

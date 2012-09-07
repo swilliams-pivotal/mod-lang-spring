@@ -17,19 +17,18 @@ package org.vertx.java.deploy.impl.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-import org.vertx.java.core.Vertx;
+import org.vertx.java.deploy.Container;
 
 /**
  * @author swilliams
  * @since 1.0
- * 
  */
-public class VertxAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter {
+public class ContainerAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter {
 
-  private final Vertx vertx;
+  private final Container container;
 
-  public VertxAwareBeanPostProcessor(Vertx vertx) {
-    this.vertx = vertx;
+  public ContainerAwareBeanPostProcessor(Container container) {
+    this.container = container;
   }
 
   /**
@@ -39,10 +38,10 @@ public class VertxAwareBeanPostProcessor extends InstantiationAwareBeanPostProce
   public Object postProcessBeforeInitialization(Object bean, String beanName)
       throws BeansException {
 
-    if (bean instanceof VertxAware) {
-      VertxAware vertxSupport = (VertxAware) bean;
-      vertxSupport.setVertx(vertx);
-      return vertxSupport;
+    if (bean instanceof ContainerAware) {
+      ContainerAware vertxContainer = (ContainerAware) bean;
+      vertxContainer.setContainer(container);
+      return vertxContainer;
     }
 
     return bean;
