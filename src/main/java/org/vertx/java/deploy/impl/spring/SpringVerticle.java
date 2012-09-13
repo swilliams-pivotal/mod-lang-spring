@@ -42,7 +42,9 @@ public class SpringVerticle extends Verticle {
   @Override
   public void start() throws Exception {
 
+    ClassLoader tccl = Thread.currentThread().getContextClassLoader();
     Thread.currentThread().setContextClassLoader(loader);
+
     this.context = new VertxApplicationContext(loader, vertx, container);
     context.createContext(springConfig);
 
@@ -55,6 +57,8 @@ public class SpringVerticle extends Verticle {
 
     context.refresh();
     context.start();
+
+    Thread.currentThread().setContextClassLoader(tccl);
   }
 
   @Override
