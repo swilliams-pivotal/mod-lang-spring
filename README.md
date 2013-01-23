@@ -2,6 +2,8 @@
 
 Spring language support extension for vert.x.
 
+[![Build Status](https://travis-ci.org/vert-x/vertx-junit-annotations.png?branch=master)](https://travis-ci.org/swilliams-vmw/vertx-lang-spring)
+
 ## Download 
 
 A download is available for testing: [vertx-lang-spring-1.0-SNAPSHOT.zip](https://github.com/swilliams-vmw/vertx-lang-spring/downloads "vertx-lang-spring-1.0-SNAPSHOT.zip — vert.x language support module for Spring applications")
