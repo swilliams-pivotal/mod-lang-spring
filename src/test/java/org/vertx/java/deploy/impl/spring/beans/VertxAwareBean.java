@@ -26,11 +26,11 @@ import org.vertx.java.deploy.impl.spring.VertxAware;
  * @author swilliams
  *
  */
-public class VertxAwareBean implements InitializingBean, DisposableBean, VertxAware {
+public class VertxAwareBean implements InitializingBean, DisposableBean, VertxAware, Handler<Message<String>> {
+
+  private static final String HANDLER_ADDRESS = "vertx.test.echo1";
 
   private Vertx vertx;
-
-  private String handlerId;
 
   @Override
   public void setVertx(Vertx vertx) {
@@ -43,17 +43,17 @@ public class VertxAwareBean implements InitializingBean, DisposableBean, VertxAw
 
   @Override
   public void afterPropertiesSet() throws Exception {
-    this.handlerId = vertx.eventBus().registerHandler("vertx.test.echo0", new Handler<Message<String>>() {
-      @Override
-      public void handle(Message<String> event) {
-        event.reply(event.body);
-      }
-    });
+    vertx.eventBus().registerHandler(HANDLER_ADDRESS, this);
   }
 
   @Override
   public void destroy() throws Exception {
-    vertx.eventBus().unregisterHandler(handlerId);
+    vertx.eventBus().unregisterHandler(HANDLER_ADDRESS, this);
+  }
+
+  @Override
+  public void handle(Message<String> event) {
+    event.reply(event.body);
   }
 
 }

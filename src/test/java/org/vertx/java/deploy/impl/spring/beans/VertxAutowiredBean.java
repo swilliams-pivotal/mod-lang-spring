@@ -26,11 +26,11 @@ import org.vertx.java.core.eventbus.Message;
  * @author swilliams
  *
  */
-public class VertxAutowiredBean implements InitializingBean, DisposableBean {
+public class VertxAutowiredBean implements InitializingBean, DisposableBean, Handler<Message<String>> {
+
+  private static final String HANDLER_ADDRESS = "vertx.test.echo0";
 
   private final Vertx vertx;
-
-  private String handlerId;
 
   @Autowired
   public VertxAutowiredBean(Vertx vertx) {
@@ -43,17 +43,17 @@ public class VertxAutowiredBean implements InitializingBean, DisposableBean {
 
   @Override
   public void afterPropertiesSet() throws Exception {
-    this.handlerId = vertx.eventBus().registerHandler("vertx.test.echo1", new Handler<Message<String>>() {
-      @Override
-      public void handle(Message<String> event) {
-        event.reply(event.body);
-      }
-    });
+    vertx.eventBus().registerHandler(HANDLER_ADDRESS, this);
   }
 
   @Override
   public void destroy() throws Exception {
-    vertx.eventBus().unregisterHandler(handlerId);
+    vertx.eventBus().unregisterHandler(HANDLER_ADDRESS, this);
+  }
+
+  @Override
+  public void handle(Message<String> event) {
+    event.reply(event.body);
   }
 
 }

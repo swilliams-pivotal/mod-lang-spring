@@ -76,18 +76,6 @@ test {
   testLogging.showStandardStreams = true
 }
 
-task collectDeps(type: Copy) {
-  group = 'vert.x'
-  description = 'conveniently collect dependencies for other IDEs'
-  destinationDir = file("build/deps")
-  into("compile") {
-    from configurations.compile
-  }
-  into("test") {
-    from configurations.testCompile
-  }
-}
-
 task prepareDist(type:Sync, dependsOn: ['build']) {
   group = 'vert.x'
   description = 'Prepare distribution'

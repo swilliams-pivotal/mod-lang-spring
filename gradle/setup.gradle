@@ -3,3 +3,16 @@ task wrapper(type: Wrapper, description: "Create a Gradle self-download wrapper"
     group = 'Project Setup'
     gradleVersion = rootProject.gradleVersion
 }
+
+task collectDeps(type: Copy) {
+  group = 'vert.x'
+  description = 'conveniently collect dependencies for other IDEs'
+  destinationDir = file("build/deps")
+  into("compile") {
+    from configurations.compile
+  }
+  into("test") {
+    from configurations.testCompile
+  }
+}
+

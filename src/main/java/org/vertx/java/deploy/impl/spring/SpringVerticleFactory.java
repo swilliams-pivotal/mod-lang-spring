@@ -16,7 +16,8 @@
 package org.vertx.java.deploy.impl.spring;
 
 import org.vertx.java.deploy.Verticle;
-import org.vertx.java.deploy.VerticleFactory;
+import org.vertx.java.deploy.impl.ModuleClassLoader;
+import org.vertx.java.deploy.impl.VerticleFactory;
 import org.vertx.java.deploy.impl.VerticleManager;
 
 /**
@@ -26,38 +27,22 @@ import org.vertx.java.deploy.impl.VerticleManager;
  */
 public class SpringVerticleFactory implements VerticleFactory {
 
-  private static final String LANGUAGE = "spring";
-
   private static final String PREFIX = "spring:";
 
   private VerticleManager manager;
 
+  private ModuleClassLoader mcl;
+
   @Override
-  public void init(VerticleManager manager) {
+  public void init(VerticleManager manager, ModuleClassLoader mcl) {
     this.manager = manager;
+    this.mcl = mcl;
   }
 
   @Override
-  public String getLanguage() {
-    return LANGUAGE;
-  }
-
-  @Override
-  public boolean isFactoryFor(String main) {
-
-    if (main == null) {
-      return false;
-    }
-
-    return main.startsWith(PREFIX);
-  }
-
-  @Override
-  public Verticle createVerticle(String main, ClassLoader parent)
-      throws Exception {
-
+  public Verticle createVerticle(String main) throws Exception {
     String springConfig = main.replaceFirst(PREFIX, "");
-    return new SpringVerticle(parent, springConfig);
+    return new SpringVerticle(mcl, springConfig);
   }
 
   @Override
