@@ -71,6 +71,7 @@ test {
   systemProperty 'vertx.test.timeout', 15
   systemProperty 'vertx.mods', "$projectDir/build/tmp/mod-test"
   systemProperty 'vertx.version', "$project.version"
+  systemProperty 'vertx.langs.spring', "org.vertx.java.deploy.impl.spring.SpringVerticleFactory"
 
   // Show output
   testLogging.showStandardStreams = true
