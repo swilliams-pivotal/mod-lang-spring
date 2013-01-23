@@ -17,15 +17,18 @@ The current master contains a fix to permit prefix's in module or verticle main 
 
 1. Clone the repo and build the distribution package (./gradlew dist).  You'll find it in: build/distributions. Unzip it in $VERTX_HOME/lib.
 
+
 2. Add the following to vertx/conf/langs.properties:
 
     spring=org.vertx.java.deploy.impl.spring.SpringVerticleFactory
+
 
 3. Using the prefix 'spring:', specify a Spring configuration file in your verticle or module's mod.json:
 
     {
       "main": "spring:mySpringConfig.xml"
     }
+
 
 4. Alternatively, if you provide cglib in your application, you can specify an annotated @Configuration class in your verticle or module's mod.json:
     {
