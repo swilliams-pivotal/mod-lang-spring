@@ -15,7 +15,7 @@
  */
 package org.vertx.java.deploy.impl.spring;
 
-import org.vertx.java.deploy.Container;
+import org.vertx.java.platform.Container;
 
 /**
  * @author swilliams

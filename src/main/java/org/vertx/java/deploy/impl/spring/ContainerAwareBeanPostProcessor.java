@@ -17,7 +17,7 @@ package org.vertx.java.deploy.impl.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-import org.vertx.java.deploy.Container;
+import org.vertx.java.platform.Container;
 
 /**
  * @author swilliams

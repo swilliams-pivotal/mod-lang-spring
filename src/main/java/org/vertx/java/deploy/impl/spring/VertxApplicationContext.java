@@ -25,7 +25,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.vertx.java.core.Vertx;
-import org.vertx.java.deploy.Container;
+import org.vertx.java.platform.Container;
 
 /**
  *

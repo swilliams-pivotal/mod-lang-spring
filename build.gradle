@@ -59,6 +59,8 @@ dependencies {
   testCompile "org.vert-x:vertx-junit-annotations:$junitAnnoVersion"
   testCompile "org.vert-x:vertx-lang-java:$vertxVersion"
   testCompile "org.vert-x:vertx-lang-rhino:$vertxVersion"
+//  testCompile "org.vert-x:mod-lang-java:$vertxVersion"
+//  testCompile "org.vert-x:mod-lang-rhino:$vertxVersion"
   testCompile("org.vert-x:vertx-testframework:$vertxVersion") {
     transitive = false // don't need all of the other language deps
   }

@@ -19,7 +19,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.context.ApplicationListener;
-import org.vertx.java.deploy.Verticle;
+import org.vertx.java.platform.Container;
+import org.vertx.java.platform.Verticle;
 
 /**
  * @author swilliams
@@ -32,10 +33,13 @@ public class SpringVerticle extends Verticle {
 
   private final String springConfig;
 
+  private final Container container;
+
   private VertxApplicationContext context;
 
-  public SpringVerticle(ClassLoader loader, String springConfig) {
+  public SpringVerticle(ClassLoader loader, Container container, String springConfig) {
     this.loader = loader;
+    this.container = container;
     this.springConfig = springConfig;
   }
 

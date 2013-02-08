@@ -15,39 +15,51 @@
  */
 package org.vertx.java.deploy.impl.spring;
 
-import org.vertx.java.deploy.Verticle;
-import org.vertx.java.deploy.impl.ModuleClassLoader;
-import org.vertx.java.deploy.impl.VerticleFactory;
-import org.vertx.java.deploy.impl.VerticleManager;
+import org.vertx.java.core.Vertx;
+import org.vertx.java.core.logging.Logger;
+import org.vertx.java.platform.Container;
+import org.vertx.java.platform.Verticle;
+import org.vertx.java.platform.VerticleFactory;
+
 
 /**
  * @author swilliams
- * @since 1.0
+ * @since 2.0
  *
  */
 public class SpringVerticleFactory implements VerticleFactory {
 
   private static final String PREFIX = "spring:";
 
-  private VerticleManager manager;
+  private Vertx vertx;
 
-  private ModuleClassLoader mcl;
+  private Container container;
+
+  private ClassLoader loader;
 
   @Override
-  public void init(VerticleManager manager, ModuleClassLoader mcl) {
-    this.manager = manager;
-    this.mcl = mcl;
+  public final void init(Vertx vertx, Container container, ClassLoader cl) {
+    if (this.vertx != null || this.container != null || this.loader != null) {
+      throw new IllegalStateException("The 'init(v,c,l)' method has already been called for this VerticleFactory");
+    }
+    this.vertx = vertx;
+    this.container = container;
+    this.loader = cl;
   }
 
   @Override
   public Verticle createVerticle(String main) throws Exception {
-    String springConfig = main.replaceFirst(PREFIX, "");
-    return new SpringVerticle(mcl, springConfig);
+    return new SpringVerticle(loader, container, main.replaceFirst(PREFIX, ""));
   }
 
   @Override
-  public void reportException(Throwable t) {
-    manager.getLogger().error("Exception in Spring verticle", t);
+  public void reportException(Logger logger, Throwable t) {
+    logger.error("Exception in Spring verticle", t);
+  }
+
+  @Override
+  public void close() {
+    //
   }
 
 }

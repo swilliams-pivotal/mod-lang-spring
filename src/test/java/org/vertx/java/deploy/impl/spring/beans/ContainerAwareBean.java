@@ -17,8 +17,8 @@ package org.vertx.java.deploy.impl.spring.beans;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
-import org.vertx.java.deploy.Container;
 import org.vertx.java.deploy.impl.spring.ContainerAware;
+import org.vertx.java.platform.Container;
 
 /**
  * @author swilliams
