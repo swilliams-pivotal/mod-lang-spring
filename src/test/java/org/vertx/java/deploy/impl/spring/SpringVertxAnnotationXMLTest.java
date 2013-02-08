@@ -26,7 +26,7 @@ import org.vertx.java.test.VertxTestBase;
  * @author swilliams
  *
  */
-@RunWith(VertxJUnit4ClassRunner.class)
+//@RunWith(VertxJUnit4ClassRunner.class)
 @TestVerticle(main="spring:testAnnotationConfig.xml")
 public class SpringVertxAnnotationXMLTest {
 

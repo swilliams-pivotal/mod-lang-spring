@@ -26,7 +26,7 @@ import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
  * @author swilliams
  *
  */
-@RunWith(VertxJUnit4ClassRunner.class)
+//@RunWith(VertxJUnit4ClassRunner.class)
 @TestVerticle(main="spring:org.vertx.java.deploy.impl.spring.beans.TestConfiguration")
 public class SpringVertxAnnotationConfigTest {
 

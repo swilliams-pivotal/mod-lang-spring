@@ -23,7 +23,7 @@ import org.vertx.java.test.VertxTestBase;
 import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
 
 
-@RunWith(VertxJUnit4ClassRunner.class)
+//@RunWith(VertxJUnit4ClassRunner.class)
 @TestVerticle(main="spring:testConfig.xml")
 public class SpringVertxXMLTest {
 
