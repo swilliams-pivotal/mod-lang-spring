@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vertx.java.deploy.impl.spring;
+package org.vertx.java.spring.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
 import org.vertx.java.platform.Container;
+import org.vertx.java.spring.ContainerAware;
 
 /**
  * @author swilliams

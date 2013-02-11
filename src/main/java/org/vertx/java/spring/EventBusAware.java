@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vertx.java.deploy.impl.spring;
+package org.vertx.java.spring;
 
-import org.vertx.java.platform.Container;
+import org.vertx.java.core.eventbus.EventBus;
+
 
 /**
  * @author swilliams
+ * @since 1.0
  *
  */
-public interface ContainerAware {
+public interface EventBusAware {
 
-  void setContainer(Container container);
+  void setEventBus(EventBus eventBus);
 
 }

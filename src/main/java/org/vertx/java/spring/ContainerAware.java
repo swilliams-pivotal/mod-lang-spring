@@ -13,33 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vertx.java.deploy.impl.spring.beans;
+package org.vertx.java.spring;
 
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.util.Assert;
 import org.vertx.java.platform.Container;
-import org.vertx.java.spring.ContainerAware;
 
 /**
  * @author swilliams
  *
  */
-public class ContainerAwareBean implements InitializingBean, ContainerAware {
+public interface ContainerAware {
 
-  private Container container;
-
-  @Override
-  public void setContainer(Container container) {
-    this.container = container;
-  }
-
-  public Container getContainer() {
-    return container;
-  }
-
-  @Override
-  public void afterPropertiesSet() throws Exception {
-    Assert.notNull(container, "Container must not be null!");
-  }
+  void setContainer(Container container);
 
 }

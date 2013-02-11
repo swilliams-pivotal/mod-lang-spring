@@ -26,6 +26,8 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.vertx.java.core.Vertx;
 import org.vertx.java.platform.Container;
+import org.vertx.java.spring.config.ContainerAwareBeanPostProcessor;
+import org.vertx.java.spring.config.VertxAwareBeanPostProcessor;
 
 /**
  *

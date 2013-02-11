@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vertx.java.deploy.impl.spring;
+package org.vertx.java.spring.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
 import org.vertx.java.core.Vertx;
+import org.vertx.java.spring.EventBusAware;
+import org.vertx.java.spring.VertxAware;
 
 /**
  * @author swilliams
@@ -33,16 +35,22 @@ public class VertxAwareBeanPostProcessor extends InstantiationAwareBeanPostProce
   }
 
   /**
-   * Detects beans that implement VertxAware.
+   * Detects beans that implement VertxAware, EventBusAware
    */
   @Override
   public Object postProcessBeforeInitialization(Object bean, String beanName)
       throws BeansException {
 
     if (bean instanceof VertxAware) {
-      VertxAware vertxSupport = (VertxAware) bean;
-      vertxSupport.setVertx(vertx);
-      return vertxSupport;
+      VertxAware vertxAware = (VertxAware) bean;
+      vertxAware.setVertx(vertx);
+      return vertxAware;
+    }
+
+    if (bean instanceof EventBusAware) {
+      EventBusAware eventBusAware = (EventBusAware) bean;
+      eventBusAware.setEventBus(vertx.eventBus());
+      return eventBusAware;
     }
 
     return bean;

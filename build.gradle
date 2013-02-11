@@ -24,6 +24,7 @@ sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
 repositories {
+  // mavenLocal()
   maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
   maven { url 'http://repo.springsource.org/release' }
   mavenCentral()
@@ -31,6 +32,7 @@ repositories {
 
 configurations {
   provided
+  compile.extendsFrom provided
 }
 
 sourceSets {
@@ -40,8 +42,8 @@ sourceSets {
 }
 
 dependencies {
-  provided "org.vert-x:vertx-core:$vertxVersion"
-  provided "org.vert-x:vertx-platform:$vertxVersion"
+  provided "io.vertx:vertx-core:$vertxVersion"
+  provided "io.vertx:vertx-platform:$vertxVersion"
 
   compile("org.springframework:spring-beans:$springVersion") { transitive = false }
   compile("org.springframework:spring-core:$springVersion") { transitive = false }
@@ -52,16 +54,16 @@ dependencies {
   testCompile "org.mozilla:rhino:$rhinoVersion"
 
   testCompile "org.springframework:spring-aop:$springVersion"
-  testCompile "org.springframework:spring-asm:$springVersion"
+//  testCompile "org.springframework:spring-asm:$springVersion"
   testCompile "org.springframework:spring-expression:$springVersion"
   testCompile "org.springframework:spring-test:$springVersion"
 
-  testCompile "org.vert-x:vertx-junit-annotations:$junitAnnoVersion"
-  testCompile "org.vert-x:vertx-lang-java:$vertxVersion"
-  testCompile "org.vert-x:vertx-lang-rhino:$vertxVersion"
-//  testCompile "org.vert-x:mod-lang-java:$vertxVersion"
-//  testCompile "org.vert-x:mod-lang-rhino:$vertxVersion"
-  testCompile("org.vert-x:vertx-testframework:$vertxVersion") {
+//  testCompile "org.vert-x:vertx-junit-annotations:$junitAnnoVersion"
+//  testCompile "io.vertx:vertx-lang-java:$vertxVersion"
+//  testCompile "io.vertx:vertx-lang-rhino:$vertxVersion"
+//  testCompile "io.vertx:mod-lang-java:$vertxVersion"
+//  testCompile "io.vertx:mod-lang-rhino:$vertxVersion"
+  testCompile("io.vertx:vertx-testframework:$vertxVersion") {
     transitive = false // don't need all of the other language deps
   }
 }

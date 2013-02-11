@@ -1,0 +1,4 @@
+# Tooling related information for the integration http namespace
+http\://vertx.io/schema/spring/vertx@name=vert.x Spring Namespace
+http\://vertx.io/schema/spring/vertx@prefix=vertx
+http\://vertx.io/schema/spring/vertx@icon=org/vertx/java/spring/config/vertx-spring.gif
