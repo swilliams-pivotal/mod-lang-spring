@@ -30,7 +30,7 @@ Language support implementation for Spring Framework applications on vert.x 2.0.
 
 ### Application Components
 
-In a bean annotated with {@Component}, created in an {@Configuration} class, or declared in an Spring Framework XML configuration file, you can annotate a method with the {@EventBusHandler} annotation.  The application context will automatically register a vert.x event bus Handler that delegates to this method, on the address specified in the annotation.
+In a bean annotated with `@Component`, created in an `@Configuration` class, or declared in an Spring Framework XML configuration file, you can annotate a method with the `@EventBusHandler` annotation.  The application context will automatically register a vert.x event bus Handler that delegates to this method, on the address specified in the annotation.
 
 If the method returns a value, then it is sent as a reply to the sender of the event.
 
