@@ -15,7 +15,9 @@
  */
 package org.vertx.spring.examples;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.vertx.java.core.eventbus.EventBus;
 import org.vertx.spring.EventBusHandler;
 
 /**
@@ -25,9 +27,13 @@ import org.vertx.spring.EventBusHandler;
 @Component
 public class AnnotatedVertxMessageListener {
 
+  @Autowired
+  private EventBus eventBus;
+
   @EventBusHandler("test.annotation.receive")
   public void onMessage(String payload) {
     System.out.println("AnnotatedVertxMessageListener.payload(" + payload + ")");
+    eventBus.send("test.annotation.receive.callback", payload);
   }
 
 }

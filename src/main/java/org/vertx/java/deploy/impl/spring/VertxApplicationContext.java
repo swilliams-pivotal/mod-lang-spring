@@ -51,6 +51,8 @@ public class VertxApplicationContext {
 
   private static final String VERTX_BEAN_NAME = "org.vertx.java.core.Vertx";
 
+  private static final String EVENTBUS_BEAN_NAME = "org.vertx.java.core.message.EventBus";
+
   private static final String VERTICLE_CONTAINER_BEAN_NAME = "org.vertx.java.core.VerticleContainer";
 
   private final Set<ApplicationListener<?>> listeners = new HashSet<>();
@@ -76,8 +78,13 @@ public class VertxApplicationContext {
     parent.setClassLoader(loader);
 
     ConfigurableListableBeanFactory factory = parent.getBeanFactory();
+
     factory.registerSingleton(VERTX_BEAN_NAME, this.vertx);
     factory.registerAlias(VERTX_BEAN_NAME, "vertx");
+
+    factory.registerSingleton(EVENTBUS_BEAN_NAME, vertx.eventBus());
+    factory.registerAlias(EVENTBUS_BEAN_NAME, "eventBus");
+
     factory.registerSingleton(VERTICLE_CONTAINER_BEAN_NAME, this.container);
     factory.registerAlias(VERTICLE_CONTAINER_BEAN_NAME, "verticle-container");
 
