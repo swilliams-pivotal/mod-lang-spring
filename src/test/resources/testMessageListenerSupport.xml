@@ -9,9 +9,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
-  <bean id="listener" class="org.vertx.java.spring.listener.EchoVertxMessageListener"></bean>
+  <bean id="listener" class="org.vertx.spring.examples.EchoVertxMessageListener"></bean>
 
-  <bean id="producer" class="org.vertx.java.spring.listener.SimpleVertxMessageProducer"
+  <bean id="producer" class="org.vertx.spring.examples.SimpleVertxMessageProducer"
     p:address="test.listener.echo"
     p:listener-ref="listener">
   </bean>

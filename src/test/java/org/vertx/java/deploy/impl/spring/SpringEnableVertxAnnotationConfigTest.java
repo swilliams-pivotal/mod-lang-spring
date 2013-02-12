@@ -17,25 +17,25 @@ package org.vertx.java.deploy.impl.spring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
 import org.vertx.java.test.TestVerticle;
 import org.vertx.java.test.VertxTestBase;
+import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
 
 /**
  * @author swilliams
  *
  */
 @RunWith(VertxJUnit4ClassRunner.class)
-@TestVerticle(main="spring:testAnnotationConfig.xml")
-public class SpringVertxAnnotationXMLTest extends VertxTestBase {
+@TestVerticle(main="spring:org.vertx.spring.examples.TestEnableVertxConfiguration")
+public class SpringEnableVertxAnnotationConfigTest extends VertxTestBase {
 
   @Test
-  public void testVertxAutowiredBean() throws Exception {
-    testMessageEcho("vertx.test.echo0", "What's the time Mr Wolfe?");
+  public void testAnnotatedReplyingVertxMessageListener() throws Exception {
+    testMessageEcho("test.annotation.reply", "This is a reply?");
   }
 
   @Test
-  public void testVertxAwareBean() throws Exception {
-    testMessageEcho("vertx.test.echo1", "I'm Winston Wolfe. I solve problems.");
+  public void testAnnotatedVertxMessageListener() throws Exception {
+    getVertx().eventBus().send("test.annotation.receive", "Nothing to see here.");
   }
 }

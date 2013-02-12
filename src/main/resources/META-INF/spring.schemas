@@ -1,1 +1,1 @@
-http\://vertx.io/schema/spring/vertx/vertx-spring-1.0.xsd=org/vertx/java/spring/config/xml/vertx-spring-1.0.xsd
+http\://vertx.io/schema/spring/vertx/vertx-spring-1.0.xsd=org/vertx/spring/config/xml/vertx-spring-1.0.xsd

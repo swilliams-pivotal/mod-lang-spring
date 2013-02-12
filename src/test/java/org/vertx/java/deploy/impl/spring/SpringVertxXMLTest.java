@@ -15,30 +15,24 @@
  */
 package org.vertx.java.deploy.impl.spring;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//import org.vertx.java.test.TestVerticle;
-//import org.vertx.java.test.VertxTestBase;
-//import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
+import org.vertx.java.test.TestVerticle;
+import org.vertx.java.test.VertxTestBase;
+import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
 
 
-//@RunWith(VertxJUnit4ClassRunner.class)
-// @TestVerticle(main="spring:testConfig.xml")
-public class SpringVertxXMLTest {
-
-  @Before
-  public void setup() {
-//    lightSleep(1000L); // Still needs a delay for some reason
-  }
+@RunWith(VertxJUnit4ClassRunner.class)
+@TestVerticle(main="spring:testConfig.xml")
+public class SpringVertxXMLTest extends VertxTestBase {
 
   @Test
   public void testVertxAutowiredBean() throws Exception {
-//    testMessageEcho("vertx.test.echo0", "What's the time Mr Wolfe?");
+    testMessageEcho("vertx.test.echo0", "What's the time Mr Wolfe?");
   }
 
   @Test
   public void testVertxAwareBean() throws Exception {
-//    testMessageEcho("vertx.test.echo1", "I'm Winston Wolfe. I solve problems.");
+    testMessageEcho("vertx.test.echo1", "I'm Winston Wolfe. I solve problems.");
   }
 }

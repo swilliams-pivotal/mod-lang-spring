@@ -7,6 +7,6 @@
 
   <context:annotation-config />
 
-  <context:component-scan base-package="org.vertx.java.spring.listener"></context:component-scan>
+  <context:component-scan base-package="org.vertx.spring.support"/>
 
 </beans>
