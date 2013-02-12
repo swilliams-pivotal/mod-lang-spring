@@ -10,7 +10,7 @@
 	<xsd:import namespace="http://www.springframework.org/schema/tool" />
 	<xsd:import namespace="http://www.springframework.org/schema/beans" />
 
-    <xsd:element name="annotation-configured">
+    <xsd:element name="annotation-config">
       <xsd:annotation>
         <xsd:documentation source="org.vertx.spring.config.annotations.VertxAnnotationsBeanPostProcessor"><![CDATA[
         ]]></xsd:documentation>

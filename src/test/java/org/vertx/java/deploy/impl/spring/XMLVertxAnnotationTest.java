@@ -17,14 +17,17 @@ package org.vertx.java.deploy.impl.spring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
 import org.vertx.java.test.TestVerticle;
 import org.vertx.java.test.VertxTestBase;
-import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
 
-
+/**
+ * @author swilliams
+ *
+ */
 @RunWith(VertxJUnit4ClassRunner.class)
-@TestVerticle(main="spring:testConfig.xml")
-public class SpringVertxXMLTest extends VertxTestBase {
+@TestVerticle(main="spring:testAnnotationConfig.xml")
+public class XMLVertxAnnotationTest extends VertxTestBase {
 
   @Test
   public void testVertxAutowiredBean() throws Exception {

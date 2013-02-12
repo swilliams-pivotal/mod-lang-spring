@@ -26,16 +26,16 @@ import org.vertx.java.test.junit.VertxJUnit4ClassRunner;
  *
  */
 @RunWith(VertxJUnit4ClassRunner.class)
-@TestVerticle(main="spring:org.vertx.spring.examples.TestEnableVertxConfiguration")
-public class SpringEnableVertxAnnotationConfigTest extends VertxTestBase {
+@TestVerticle(main="spring:org.vertx.spring.examples.TestConfiguration")
+public class AnnotationVerticleSimpleTest extends VertxTestBase {
 
   @Test
-  public void testAnnotatedReplyingVertxMessageListener() throws Exception {
-    testMessageEcho("test.annotation.reply", "This is a reply?");
+  public void testVertxAutowiredBean() throws Exception {
+    testMessageEcho("vertx.test.echo0", "What do you call a lost wolf?  A where-wolf!");
   }
 
   @Test
-  public void testAnnotatedVertxMessageListener() throws Exception {
-    getVertx().eventBus().send("test.annotation.receive", "Nothing to see here.");
+  public void testVertxAwareBean() throws Exception {
+    testMessageEcho("vertx.test.echo1", "Bad Wolf.");
   }
 }
