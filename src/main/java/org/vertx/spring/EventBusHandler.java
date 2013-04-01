@@ -26,6 +26,7 @@ import java.lang.annotation.Target;
  * @author swilliams
  *
  */
+// TODO @Bean can be used here in Spring 3.2
 @Documented
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)

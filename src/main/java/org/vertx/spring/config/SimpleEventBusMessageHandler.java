@@ -28,7 +28,7 @@ import org.vertx.spring.EventBusMessageHandler;
  * @author swilliams
  *
  */
-public class EventBusMessageHandlerImpl<T> implements InitializingBean, SmartLifecycle, Handler<Message<T>> {
+public class SimpleEventBusMessageHandler<T> implements InitializingBean, SmartLifecycle, Handler<Message<T>> {
 
   private final EventBus eventBus;
 
@@ -45,7 +45,7 @@ public class EventBusMessageHandlerImpl<T> implements InitializingBean, SmartLif
    * @param value
    * @param listener
    */
-  EventBusMessageHandlerImpl(EventBus eventBus, EventBusMessageHandler<T> listener) {
+  SimpleEventBusMessageHandler(EventBus eventBus, EventBusMessageHandler<T> listener) {
     this.eventBus = eventBus;
     this.listener = listener;
   }
@@ -73,7 +73,7 @@ public class EventBusMessageHandlerImpl<T> implements InitializingBean, SmartLif
     eventBus.registerHandler(listener.getAddress(), this, new AsyncResultHandler<Void>() {
       @Override
       public void handle(AsyncResult<Void> event) {
-        EventBusMessageHandlerImpl.this.running = true;
+        SimpleEventBusMessageHandler.this.running = true;
       }
     });
   }

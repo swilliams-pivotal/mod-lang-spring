@@ -44,7 +44,7 @@ public class EventBusMessageHandlerPostProcessor extends InstantiationAwareBeanP
       @SuppressWarnings("unchecked")
       EventBusMessageHandler<Object> listener = (EventBusMessageHandler<Object>) bean;
       Vertx vertx = applicationContext.getBean(Vertx.class);
-      return new EventBusMessageHandlerImpl<Object>(vertx.eventBus(), listener);
+      return new SimpleEventBusMessageHandler<Object>(vertx.eventBus(), listener);
     }
 
     return super.postProcessBeforeInitialization(bean, beanName);

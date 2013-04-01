@@ -15,13 +15,12 @@
  */
 package org.vertx.spring.config;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
 import org.vertx.spring.EventBusHandler;
-import org.vertx.spring.EventBusMessageHandler;
+
 
 /**
  * @author swilliams
@@ -29,6 +28,10 @@ import org.vertx.spring.EventBusMessageHandler;
  */
 public class EventBusHandlerAnnotationPostProcessor extends InstantiationAwareBeanPostProcessorAdapter implements AnnotatedMethodPostProcessor<EventBusHandler> {
 
+  /*
+   * (non-Javadoc)
+   * @see org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter#postProcessBeforeInitialization(java.lang.Object, java.lang.String)
+   */
   @Override
   public Object postProcessBeforeInitialization(Object bean, String beanName)
       throws BeansException {
@@ -47,36 +50,8 @@ public class EventBusHandlerAnnotationPostProcessor extends InstantiationAwareBe
    * @see org.vertx.java.spring.config.AnnotatedMethodPostProcessor#postProcess(java.lang.Object, java.lang.String, java.lang.reflect.Method, java.lang.annotation.Annotation)
    */
   @Override
-  public Object postProcess(final Object bean, final String beanName, final Method method,
-      final EventBusHandler annotation) {
-
-    return new EventBusMessageHandler<Object>() {
-
-      @Override
-      public String getAddress() {
-        return annotation.value();
-      }
-
-      @Override
-      public void onEvent(Object payload) {
-        try {
-          method.invoke(bean, payload);
-        } catch (IllegalAccessException | IllegalArgumentException
-            | InvocationTargetException e) {
-          throw new RuntimeException(e);
-        }
-      }
-
-      @Override
-      public Object replyOnEvent(Object payload) {
-        try {
-          return method.invoke(bean, payload);
-        } catch (IllegalAccessException | IllegalArgumentException
-            | InvocationTargetException e) {
-          throw new RuntimeException(e);
-        }
-      }
-    };
+  public Object postProcess(final Object bean, final String beanName, final Method method, final EventBusHandler annotation) {
+    return new EventBusMessageHandlerProxy(annotation.value(), bean, method);
   }
 
 }

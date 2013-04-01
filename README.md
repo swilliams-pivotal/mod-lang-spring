@@ -6,7 +6,7 @@ Language support implementation for Spring Framework applications on vert.x 2.0.
 
 
 
-## HowTo use vertx-lang-spring
+## HowTo use mod-lang-spring
 
 ### Module Configuration
 
